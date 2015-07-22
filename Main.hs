@@ -9,7 +9,7 @@ import qualified Sound.MIDI.Message as MMessage
 
 import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
-
+import Data.Maybe
 
 
 main = do
@@ -31,9 +31,11 @@ loadIt fp = do
   -- EventList.mapBodyM print events
   -- mapM print (EventList.toPairList events)
   
-  mapM (\(a,b) -> print (toNote b)) (EventList.toPairList events)
+  mapM (\(a,b) -> print $ show a ++ show (toNote b)) (EventList.toPairList events)
+  print (toNoteClusters (EventList.toPairList events))
   return ()
 
+toNote :: Event.T -> Maybe Int
 toNote evt = 
   case evt of 
     Event.MIDIEvent blah -> 
@@ -41,16 +43,43 @@ toNote evt =
       case wha of 
         ChannelMsg.Voice (Voice.NoteOn p v) -> Just (Voice.fromPitch p)
         _ -> Nothing
-      -- Just wha
     _ -> Nothing
-      
+     
+toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
+toNoteClusters inlist = 
+  let tmnotes = catMaybes $ map feh inlist
+      feh (tm,bdy) = case (toNote bdy) of 
+        Just note -> Just (tm, note)
+        Nothing -> Nothing
+   in
+      case tmnotes of 
+        [] -> []
+        ((tm,nt):pairs) -> 
+          foldr (\(time, n) ((t,notes):tnlist) -> 
+              if (time == 0)
+                then ((t, n:notes):tnlist)
+                else ((tm, [n]):(t,notes):tnlist))
+            [(tm,[nt])] pairs
+
+
 {-
+ 
+toNoteClusters :: [(time, body)] -> [(time,[Int])]
+toNoteClusters inlist = 
+  let rest = dropWhile (\(_,x) -> toNote x == Nothing) inlist in
+  case rest of 
+    [] -> []
+    ((tm,bdy):pairs) -> 
+      foldr (\(time, body) ((t,notes):tnlist) -> 
+          let note = toNote body in
+          case (time, note) of 
+            (0, Just n) -> ((t, n:notes):tnlist)
+            (tm, Just n) -> ((tm, [n]):(t,notes):tnlist)
+            (0, Nothing) -> ((t,notes):tnlist)
+            (tm, Nothing) -> ((tm, []):(t,notes):tnlist))
+        [(tm,toNote bdy)] pairs
 
-toNoteClusters :: [(time, body)] 
-
-toNoteClusters (ev:evs) = 
-  foldrPair blah 
-
+--      foldr (\(time, body) ((t,notes):tnlist)) 
 -}
 
 -- printevts  

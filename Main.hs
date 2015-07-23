@@ -31,8 +31,8 @@ loadIt fp = do
   -- EventList.mapBodyM print events
   -- mapM print (EventList.toPairList events)
   
-  mapM (\(a,b) -> print $ show a ++ show (toNote b)) (EventList.toPairList events)
-  print (toNoteClusters (EventList.toPairList events))
+  mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
+  mapM print (toNoteClusters (EventList.toPairList events))
   return ()
 
 toNote :: Event.T -> Maybe Int
@@ -45,6 +45,75 @@ toNote evt =
         _ -> Nothing
     _ -> Nothing
      
+toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
+toNoteClusters inlist = 
+  let tmnotes = dropWhile (\(_,mb) -> mb == Nothing) $ map feh inlist
+      feh (tm,bdy) = (tm, toNote bdy) 
+    in
+      case tmnotes of 
+        [] -> []
+        ((tm,Just nt):rest) -> 
+          tnc rest (tm,[nt])
+
+tnc :: (Num time, Eq time) => [(time, Maybe Int)] -> (time, [Int]) -> [(time,[Int])]
+tnc ((newtime,mbnote):rest) (curtime,curnotes) = 
+  if (newtime == 0) 
+    then case mbnote of
+      (Just newnote) -> tnc rest (curtime,newnote:curnotes)
+      Nothing -> tnc rest (curtime,curnotes)
+    else case mbnote of
+      (Just newnote) -> (curtime,curnotes) : tnc rest (newtime, [newnote]) 
+      Nothing -> (curtime,curnotes) : tnc rest (newtime, [])
+
+
+{-
+
+fold versions:  foldr and foldl turn out quite different!  both are wrong.
+
+toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
+toNoteClusters inlist = 
+  let tmnotes = dropWhile (\(_,mb) -> mb == Nothing) $ map feh inlist
+      feh (tm,bdy) = (tm, toNote bdy) 
+    in
+      case tmnotes of 
+        [] -> []
+        ((tm,Just nt):pairs) -> 
+          foldl (\((t,notes):tnlist) (time, mbn) -> 
+            if (time == 0)
+              then case mbn of 
+                -- for time zero, we're stacking notes onto the existing time entry.
+                (Just note) -> (t, note:notes):tnlist
+                Nothing -> (t, notes):tnlist
+              else case mbn of
+                -- if new time, start new time entry list. 
+                (Just note) -> (time, [note]):(t,notes):tnlist
+                Nothing -> (time, []):(t,notes):tnlist
+                )
+            [(tm,[nt])] pairs
+
+toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
+toNoteClusters inlist = 
+  let tmnotes = dropWhile (\(_,mb) -> mb == Nothing) $ map feh inlist
+      feh (tm,bdy) = (tm, toNote bdy) 
+    in
+      case tmnotes of 
+        [] -> []
+        ((tm,Just nt):pairs) -> 
+          foldr (\(time, mbn) ((t,notes):tnlist) -> 
+            if (time == 0)
+              then case mbn of 
+                -- for time zero, we're stacking notes onto the existing time entry.
+                (Just note) -> (t, note:notes):tnlist
+                Nothing -> (t, notes):tnlist
+              else case mbn of
+                -- if new time, start new time entry list. 
+                (Just note) -> (time, [note]):(t,notes):tnlist
+                Nothing -> (time, []):(t,notes):tnlist
+                )
+            [(tm,[nt])] pairs
+-}
+
+{-
 toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
 toNoteClusters inlist = 
   let tmnotes = catMaybes $ map feh inlist
@@ -61,8 +130,6 @@ toNoteClusters inlist =
                 else ((tm, [n]):(t,notes):tnlist))
             [(tm,[nt])] pairs
 
-
-{-
  
 toNoteClusters :: [(time, body)] -> [(time,[Int])]
 toNoteClusters inlist = 

@@ -11,6 +11,7 @@ import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
 import Data.Maybe
 import Data.List
+import qualified Data.Set as S
 import qualified Numeric.NonNegative.Class as NN
 
 main = do
@@ -77,7 +78,8 @@ toNote evt =
     
 toRootAndIntervals :: [Int] -> [Int]
 toRootAndIntervals (x:xs) = 
-  x:(map (\y -> rem (y - x) 12) xs)
+  let intervals = S.fromList $ filter (/= 0) $ map (\y -> rem (y - x) 12) xs in
+  x:(S.toList intervals) 
 toRootAndIntervals [] = []
  
 toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]

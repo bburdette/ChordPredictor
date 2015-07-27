@@ -39,7 +39,8 @@ loadIt fp = do
   -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
   let ncs = toNoteClusters (EventList.toPairList events)
       -- chords = filter (\(t,cl) -> length cl > 2) ncs
-      chords = addLiminate 3 0 ncs
+      chords = backOne $ addLiminate 3 0 ncs
+      -- chords = addLiminate 3 0 ncs
   mapM (\(t,cl) -> do 
     putStr (show t)
     mapM (\c -> do
@@ -50,12 +51,19 @@ loadIt fp = do
   -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()
 
+-- add up the note start offsets for eliminated notes and store the accumulated time in the next chord.
 addLiminate :: (NN.C time, Num time, Eq time) => Int -> time -> [(time, [Int])] -> [(time, [Int])]
 addLiminate lowerbound accum ((curtime,curnotes):rest) = 
   if length curnotes < lowerbound 
     then addLiminate lowerbound (accum + curtime) rest
     else (curtime + accum, curnotes) : addLiminate lowerbound 0 rest
-addLiminate _ _ [] = []
+addLiminate _ accum [] = [(accum,[])]
+
+backOne :: [(time, [Int])] -> [(time, [Int])]
+backOne ((a,b):(c,d):moar) = (c,b) : backOne ((c,d):moar)
+backOne [(a,b)] = []
+backOne [] = []
+ 
 
 toNote :: Event.T -> Maybe Int
 toNote evt = 

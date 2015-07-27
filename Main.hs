@@ -26,14 +26,23 @@ loadIt fp = do
   (MFile.Cons tp div tracks) <- fromFile fp
   -- print event count.
   let events = MFile.mergeTracks tp tracks
-  print $ (length tracks)
-  print (EventList.duration events)
+  -- print $ (length tracks)
+  -- print (EventList.duration events)
   -- EventList.mapBodyM print events
   -- mapM print (EventList.toPairList events)
-  
-  mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
-  mapM print (toNoteClusters (EventList.toPairList events))
+  -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
+  let ncs = toNoteClusters (EventList.toPairList events)
+  mapM print $ filter (\(t,cl) -> length cl > 2) ncs
+  -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()
+
+{-
+addLiminate :: (Num time, Eq time) => Int -> Int -> [(time, [Int])] -> [(time, [Int])]
+addLiminate lowerbound accum ((curtime,curnotes):rest) = 
+  if length curnotes < lowerbound 
+    then addLiminate lowerbound (accum + curtime) rest
+    else addLiminate lowerbound 0 (curtime + accum, curnotes)
+-}
 
 toNote :: Event.T -> Maybe Int
 toNote evt = 
@@ -64,7 +73,7 @@ tnc ((newtime,mbnote):rest) (curtime,curnotes) =
     else case mbnote of
       (Just newnote) -> (curtime,curnotes) : tnc rest (newtime, [newnote]) 
       Nothing -> (curtime,curnotes) : tnc rest (newtime, [])
-
+tnc [] (curtime,curnotes) = [(curtime,curnotes)]
 
 {-
 

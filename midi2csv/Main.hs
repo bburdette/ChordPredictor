@@ -15,12 +15,17 @@ import qualified Numeric.NonNegative.Class as NN
 
 main = do
   args <- getArgs
-  if (length args /= 1)
-    then do
-      putStrLn "syntax:"
-      putStrLn "midi2csv <filename>"
-    else do
+  let largs = length args
+  if (largs == 1)
+    then 
       loadIt (args !! 0)
+    else if (largs == 2)
+      then 
+        showFile (args !! 1)
+      else do
+        putStrLn "syntax:"
+        putStrLn "midi2csv <filename>"
+        putStrLn "midi2csv -raw <filename>"
 
 loadIt fp = do 
   -- showFile fp
@@ -33,15 +38,14 @@ loadIt fp = do
   -- mapM print (EventList.toPairList events)
   -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
   let ncs = toNoteClusters (EventList.toPairList events)
-      chords = filter (\(t,cl) -> length cl > 2) ncs
+      -- chords = filter (\(t,cl) -> length cl > 2) ncs
+      chords = addLiminate 3 0 ncs
   mapM (\(t,cl) -> do 
     putStr (show t)
     mapM (\c -> do
       putStr ","
       putStr (show c)) (toRootAndIntervals cl)
     putStrLn "") chords
-      
-
   -- mapM print $ filter (\(t,cl) -> length cl > 2) ncs
   -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()
@@ -50,7 +54,8 @@ addLiminate :: (NN.C time, Num time, Eq time) => Int -> time -> [(time, [Int])] 
 addLiminate lowerbound accum ((curtime,curnotes):rest) = 
   if length curnotes < lowerbound 
     then addLiminate lowerbound (accum + curtime) rest
-    else addLiminate lowerbound 0 ((curtime + accum, curnotes):rest)
+    else (curtime + accum, curnotes) : addLiminate lowerbound 0 rest
+addLiminate _ _ [] = []
 
 toNote :: Event.T -> Maybe Int
 toNote evt = 

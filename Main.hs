@@ -10,7 +10,7 @@ import qualified Sound.MIDI.Message as MMessage
 import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
 import Data.Maybe
-
+import qualified Numeric.NonNegative.Class as NN
 
 main = do
   args <- getArgs
@@ -36,13 +36,11 @@ loadIt fp = do
   -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()
 
-{-
-addLiminate :: (Num time, Eq time) => Int -> Int -> [(time, [Int])] -> [(time, [Int])]
+addLiminate :: (NN.C time, Num time, Eq time) => Int -> time -> [(time, [Int])] -> [(time, [Int])]
 addLiminate lowerbound accum ((curtime,curnotes):rest) = 
   if length curnotes < lowerbound 
     then addLiminate lowerbound (accum + curtime) rest
-    else addLiminate lowerbound 0 (curtime + accum, curnotes)
--}
+    else addLiminate lowerbound 0 ((curtime + accum, curnotes):rest)
 
 toNote :: Event.T -> Maybe Int
 toNote evt = 

@@ -1,1 +1,0 @@
-nix-shell -I nixpkgs=/home/bburdette/nixpkgs_chordster

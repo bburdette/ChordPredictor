@@ -10,6 +10,7 @@ import qualified Sound.MIDI.Message as MMessage
 import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
 import Data.Maybe
+import Data.List
 import qualified Numeric.NonNegative.Class as NN
 
 main = do
@@ -32,7 +33,16 @@ loadIt fp = do
   -- mapM print (EventList.toPairList events)
   -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
   let ncs = toNoteClusters (EventList.toPairList events)
-  mapM print $ filter (\(t,cl) -> length cl > 2) ncs
+      chords = filter (\(t,cl) -> length cl > 2) ncs
+  mapM (\(t,cl) -> do 
+    putStr (show t)
+    mapM (\c -> do
+      putStr ","
+      putStr (show c)) cl
+    putStrLn "") chords
+      
+
+  -- mapM print $ filter (\(t,cl) -> length cl > 2) ncs
   -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()
 
@@ -60,7 +70,8 @@ toNoteClusters inlist =
       case tmnotes of 
         [] -> []
         ((tm,Just nt):rest) -> 
-          tnc rest (tm,[nt])
+          let ncs = tnc rest (tm,[nt]) in
+            map (\(t,n) -> (t, sort n)) ncs
 
 tnc :: (Num time, Eq time) => [(time, Maybe Int)] -> (time, [Int]) -> [(time,[Int])]
 tnc ((newtime,mbnote):rest) (curtime,curnotes) = 

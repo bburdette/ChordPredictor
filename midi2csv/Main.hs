@@ -38,7 +38,7 @@ loadIt fp = do
     putStr (show t)
     mapM (\c -> do
       putStr ","
-      putStr (show c)) cl
+      putStr (show c)) (toRootAndIntervals cl)
     putStrLn "") chords
       
 
@@ -61,7 +61,12 @@ toNote evt =
         ChannelMsg.Voice (Voice.NoteOn p v) -> Just (Voice.fromPitch p)
         _ -> Nothing
     _ -> Nothing
-     
+    
+toRootAndIntervals :: [Int] -> [Int]
+toRootAndIntervals (x:xs) = 
+  x:(map (\y -> rem (y - x) 12) xs)
+toRootAndIntervals [] = []
+ 
 toNoteClusters :: (Num time, Eq time) => [(time, Event.T)] -> [(time,[Int])]
 toNoteClusters inlist = 
   let tmnotes = dropWhile (\(_,mb) -> mb == Nothing) $ map feh inlist

@@ -1,0 +1,147 @@
+format version: 5
+output mode:
+1 items
+0 -> single
+output directories:
+1 items
+output dir -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes
+compile options:
+0 items
+javac options:
+0 items
+compiler version:
+1 items
+0 -> 2.10.4
+compile order:
+1 items
+0 -> Mixed
+name hashing:
+1 items
+0 -> true
+products:
+9 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$1.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$1.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$2.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$3.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$4.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$5.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$6.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$.class
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild.class
+binary dependencies:
+8 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/apply-macro/jars/apply-macro-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/ivy/jars/ivy-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.8.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /home/henry/.sbt/boot/scala-2.10.4/lib/scala-library.jar
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> /usr/local/java/jdk1.7.0_79/jre/lib/rt.jar
+direct source dependencies:
+0 items
+direct external dependencies:
+0 items
+public inherited source dependencies:
+0 items
+public inherited external dependencies:
+0 items
+member reference internal dependencies:
+0 items
+member reference external dependencies:
+0 items
+inheritance internal dependencies:
+0 items
+inheritance external dependencies:
+0 items
+class names:
+9 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$1
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$1
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$2
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$3
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$4
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$5
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild$$anonfun$figaroWork$6
+used names:
+30 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> %
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> %%
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> ++
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> ++=
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> :=
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> <init>
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> Append
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> Build
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FigaroWorkBuild
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> FullInstance
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> InitializeInstance
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> Keys
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> Project
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> Seq
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> appendN
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> appendSeq
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> apply
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> canBuildFrom
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> collection
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> figaroWork
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> file
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> libraryDependencies
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> package
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> pure
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> sbt
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> scalaVersion
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> scalacOptions
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> set
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> settings
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> toGroupID
+product stamps:
+9 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$1.class -> lastModified(1438100315000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$1.class -> lastModified(1438100315000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$2.class -> lastModified(1438100316000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$3.class -> lastModified(1438100316000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$4.class -> lastModified(1438100316000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$5.class -> lastModified(1438100316000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$$anonfun$figaroWork$6.class -> lastModified(1438100316000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild$.class -> lastModified(1438100315000)
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/target/scala-2.10/sbt-0.13/classes/FigaroWorkBuild.class -> lastModified(1438100315000)
+source stamps:
+1 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> hash(84f2c160c78e45593550f062c57fff910ed628cd)
+binary stamps:
+8 items
+/home/henry/.ivy2/cache/org.scala-sbt/apply-macro/jars/apply-macro-0.13.8.jar -> lastModified(1436391355000)
+/home/henry/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.8.jar -> lastModified(1430156456000)
+/home/henry/.ivy2/cache/org.scala-sbt/ivy/jars/ivy-0.13.8.jar -> lastModified(1430156161000)
+/home/henry/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.8.jar -> lastModified(1430152703000)
+/home/henry/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.8.jar -> lastModified(1430151849000)
+/home/henry/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.8.jar -> lastModified(1436391218000)
+/home/henry/.sbt/boot/scala-2.10.4/lib/scala-library.jar -> lastModified(1395179187000)
+/usr/local/java/jdk1.7.0_79/jre/lib/rt.jar -> lastModified(1428691999000)
+class names:
+8 items
+/home/henry/.ivy2/cache/org.scala-sbt/apply-macro/jars/apply-macro-0.13.8.jar -> sbt.appmacro.Instance$
+/home/henry/.ivy2/cache/org.scala-sbt/collections/jars/collections-0.13.8.jar -> sbt.Init
+/home/henry/.ivy2/cache/org.scala-sbt/ivy/jars/ivy-0.13.8.jar -> sbt.ModuleID
+/home/henry/.ivy2/cache/org.scala-sbt/main-settings/jars/main-settings-0.13.8.jar -> sbt.Scoped$
+/home/henry/.ivy2/cache/org.scala-sbt/main/jars/main-0.13.8.jar -> sbt.Build
+/home/henry/.ivy2/cache/org.scala-sbt/sbt/jars/sbt-0.13.8.jar -> sbt.package$
+/home/henry/.sbt/boot/scala-2.10.4/lib/scala-library.jar -> scala.Predef$
+/usr/local/java/jdk1.7.0_79/jre/lib/rt.jar -> java.lang.Object
+internal apis:
+1 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> 
+rO0ABXNyABB4c2J0aS5hcGkuU291cmNlFlpwRASfbtoCAAZJAAdhcGlIYXNoWgAIaGFzTWFjcm9MABhfaW50ZXJuYWxPbmx5X25hbWVIYXNoZXN0ACRMeHNidGkvYXBpL19pbnRlcm5hbE9ubHlfTmFtZUhhc2hlcztMAANhcGl0ABVMeHNidGkvYXBpL1NvdXJjZUFQSTtMAAtjb21waWxhdGlvbnQAF0x4c2J0aS9hcGkvQ29tcGlsYXRpb247WwAEaGFzaHQAAltCeHCMSE7ZAHNyACJ4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaGVzVNq+mfrU7EwCAAJbAA9pbXBsaWNpdE1lbWJlcnN0ACNbTHhzYnRpL2FwaS9faW50ZXJuYWxPbmx5X05hbWVIYXNoO1sADnJlZ3VsYXJNZW1iZXJzcQB+AAd4cHVyACNbTHhzYnRpLmFwaS5faW50ZXJuYWxPbmx5X05hbWVIYXNoO0lagLbdlov0AgAAeHAAAAAAdXEAfgAJAAAAGnNyACB4c2J0aS5hcGkuX2ludGVybmFsT25seV9OYW1lSGFzaFsO9SJ2OFfPAgACSQAEaGFzaEwABG5hbWV0ABJMamF2YS9sYW5nL1N0cmluZzt4cOcc2v10AAZub3RpZnlzcQB+AAzxcW96dAAEd2FpdHNxAH4ADJ5RGQJ0AA0kYXNJbnN0YW5jZU9mc3EAfgAMfXXv7XQADGJ1aWxkTG9hZGVyc3NxAH4ADO7rrKV0AAZlcXVhbHNzcQB+AAxL6N+ZdAAMYXNJbnN0YW5jZU9mc3EAfgAM7H/X7HQAEnByb2plY3REZWZpbml0aW9uc3NxAH4ADNt9V+V0AAxzeW5jaHJvbml6ZWRzcQB+AAyJWBhldAANJGlzSW5zdGFuY2VPZnNxAH4ADIzSMwt0AApmaWdhcm9Xb3Jrc3EAfgAMZopFg3QACW5vdGlmeUFsbHNxAH4ADMWYjpF0AAtyb290UHJvamVjdHNxAH4ADMB0h650AAxpc0luc3RhbmNlT2ZzcQB+AAzMnbmHdAACPT1zcQB+AAxRJygJdAAFY2xvbmVzcQB+AAz/NJaPdAAIdG9TdHJpbmdzcQB+AAzznU9rdAACIT1zcQB+AAwD35qRdAAIcHJvamVjdHNzcQB+AAyRlJSMdAAIZ2V0Q2xhc3NzcQB+AAzmzTF5dAAPRmlnYXJvV29ya0J1aWxkc3EAfgAM9vitvnQAAm5lc3EAfgAMMmyqo3QAAmVxc3EAfgAM09KZhHQACHNldHRpbmdzc3EAfgAMDa0b1XQAAiMjc3EAfgAMJKRwo3QACGZpbmFsaXplc3EAfgAMaDWNRXQACGhhc2hDb2Rlc3IAE3hzYnRpLmFwaS5Tb3VyY2VBUEm5Xqf5KSM4pAIAAlsAC2RlZmluaXRpb25zdAAXW0x4c2J0aS9hcGkvRGVmaW5pdGlvbjtbAAhwYWNrYWdlc3QAFFtMeHNidGkvYXBpL1BhY2thZ2U7eHB1cgAXW0x4c2J0aS5hcGkuRGVmaW5pdGlvbjuIyVzntONeDgIAAHhwAAAAAXNyABN4c2J0aS5hcGkuQ2xhc3NMaWtlgzQcod+wl2wCAARMAA5kZWZpbml0aW9uVHlwZXQAGkx4c2J0aS9hcGkvRGVmaW5pdGlvblR5cGU7WwAQc2F2ZWRBbm5vdGF0aW9uc3QAE1tMamF2YS9sYW5nL1N0cmluZztMAAhzZWxmVHlwZXQAEEx4c2J0aS9hcGkvTGF6eTtMAAlzdHJ1Y3R1cmVxAH4AS3hyACF4c2J0aS5hcGkuUGFyYW1ldGVyaXplZERlZmluaXRpb275EW6x1VA84gIAAVsADnR5cGVQYXJhbWV0ZXJzdAAaW0x4c2J0aS9hcGkvVHlwZVBhcmFtZXRlcjt4cgAUeHNidGkuYXBpLkRlZmluaXRpb26HKhvocULjRgIABEwABmFjY2Vzc3QAEkx4c2J0aS9hcGkvQWNjZXNzO1sAC2Fubm90YXRpb25zdAAXW0x4c2J0aS9hcGkvQW5ub3RhdGlvbjtMAAltb2RpZmllcnN0ABVMeHNidGkvYXBpL01vZGlmaWVycztMAARuYW1lcQB+AA14cHNyABB4c2J0aS5hcGkuUHVibGljulg9rmwtYEICAAB4cgAQeHNidGkuYXBpLkFjY2Vzc91imvgdYzFIAgAAeHB1cgAXW0x4c2J0aS5hcGkuQW5ub3RhdGlvbjvrl+sZEPaNSAIAAHhwAAAAAHNyABN4c2J0aS5hcGkuTW9kaWZpZXJzxxETIWmc3CQCAAFCAAVmbGFnc3hwAHEAfgA1dXIAGltMeHNidGkuYXBpLlR5cGVQYXJhbWV0ZXI72W0mDyid8rYCAAB4cAAAAAB+cgAYeHNidGkuYXBpLkRlZmluaXRpb25UeXBlAAAAAAAAAAASAAB4cgAOamF2YS5sYW5nLkVudW0AAAAAAAAAABIAAHhwdAAGTW9kdWxldXIAE1tMamF2YS5sYW5nLlN0cmluZzut0lbn6R17RwIAAHhwAAAAAHNyABN4c2J0aS5TYWZlTGF6eSRJbXBsUAIuk5eXQD8CAANaAAhiaXRtYXAkMEwAAl90dAASTGphdmEvbGFuZy9PYmplY3Q7TAAEZXZhbHQAEUxzY2FsYS9GdW5jdGlvbjA7eHIAFnhzYnRpLmFwaS5BYnN0cmFjdExhennTd7UBX7vnoAIAAHhwAHBzcgAgeHNidGkuU2FmZUxhenkkJGFub25mdW4kc3RyaWN0JDEAAAAAAAAAAAIAAUwAB3ZhbHVlJDFxAH4AY3hwc3IAE3hzYnRpLmFwaS5FbXB0eVR5cGW8/Z5GSTuJJAIAAHhyABR4c2J0aS5hcGkuU2ltcGxlVHlwZXJ4YoghI79AAgAAeHIADnhzYnRpLmFwaS5UeXBlP2rZIRZJqsoCAAB4cHNxAH4AYgBwc3EAfgBnc3IAE3hzYnRpLmFwaS5TdHJ1Y3R1cmWpqvmAk2/YAAIAA0wACGRlY2xhcmVkcQB+AEtMAAlpbmhlcml0ZWRxAH4AS0wAB3BhcmVudHNxAH4AS3hxAH4Aa3NxAH4AYgBwc3EAfgBndXEAfgBGAAAAAHNxAH4AYgBwc3EAfgBndXEAfgBGAAAAAHNxAH4AYgBwc3EAfgBndXIAEVtMeHNidGkuYXBpLlR5cGU7dP+lWnv56UECAAB4cAAAAANzcgAUeHNidGkuYXBpLlByb2plY3Rpb27z0o1U6UWkLQIAAkwAAmlkcQB+AA1MAAZwcmVmaXh0ABZMeHNidGkvYXBpL1NpbXBsZVR5cGU7eHEAfgBqdAAFQnVpbGRzcgATeHNidGkuYXBpLlNpbmdsZXRvbvynX/jPVuRGAgABTAAEcGF0aHQAEEx4c2J0aS9hcGkvUGF0aDt4cQB+AGpzcgAOeHNidGkuYXBpLlBhdGibPVwIzqUnhAIAAVsACmNvbXBvbmVudHN0ABpbTHhzYnRpL2FwaS9QYXRoQ29tcG9uZW50O3hwdXIAGltMeHNidGkuYXBpLlBhdGhDb21wb25lbnQ7Q9oJdC1nFnQCAAB4cAAAAAJzcgAMeHNidGkuYXBpLklkmDJsizdTxEACAAFMAAJpZHEAfgANeHIAF3hzYnRpLmFwaS5QYXRoQ29tcG9uZW50X5oiWy6Gn7wCAAB4cHQAA3NidHNyAA54c2J0aS5hcGkuVGhpc9sJ7abMWkBcAgAAeHEAfgCIc3EAfgB7dAAGT2JqZWN0c3EAfgB/c3EAfgCCdXEAfgCFAAAAA3NxAH4Ah3QABGphdmFzcQB+AId0AARsYW5ncQB+AIxzcQB+AHt0AANBbnlzcQB+AH9zcQB+AIJ1cQB+AIUAAAACc3EAfgCHdAAFc2NhbGFxAH4AjHVyABRbTHhzYnRpLmFwaS5QYWNrYWdlO1sTGTdwpyehAgAAeHAAAAAAc3IAFXhzYnRpLmFwaS5Db21waWxhdGlvbu364MNq6KBCAgACSgAJc3RhcnRUaW1lWwAHb3V0cHV0c3QAGltMeHNidGkvYXBpL091dHB1dFNldHRpbmc7eHAAAAFO1XVSY3VyABpbTHhzYnRpLmFwaS5PdXRwdXRTZXR0aW5nO39qwvOnh6VCAgAAeHAAAAABc3IAF3hzYnRpLmFwaS5PdXRwdXRTZXR0aW5netmaR3T7HXsCAAJMAA9vdXRwdXREaXJlY3RvcnlxAH4ADUwAD3NvdXJjZURpcmVjdG9yeXEAfgANeHB0AGIvaG9tZS9oZW5yeS9jb3Vyc2VzL3BwYW1sL2Nob3JkcHJlZGljdG9yL0Nob3JkUHJlZGljdG9yL3Byb2plY3QvdGFyZ2V0L3NjYWxhLTIuMTAvc2J0LTAuMTMvY2xhc3Nlc3QAAS91cgACW0Ks8xf4BghU4AIAAHhwAAAAFITywWDHjkVZNVDwYsV//5EO1ijN
+external apis:
+0 items
+source infos:
+1 items
+/home/henry/courses/ppaml/chordpredictor/ChordPredictor/project/Build.scala -> 
+AAAAAAAAAAA=
+compilations:
+1 items
+0 -> rO0ABXNyABV4c2J0aS5hcGkuQ29tcGlsYXRpb27t+uDDauigQgIAAkoACXN0YXJ0VGltZVsAB291dHB1dHN0ABpbTHhzYnRpL2FwaS9PdXRwdXRTZXR0aW5nO3hwAAABTtV1UmN1cgAaW0x4c2J0aS5hcGkuT3V0cHV0U2V0dGluZzt/asLzp4elQgIAAHhwAAAAAXNyABd4c2J0aS5hcGkuT3V0cHV0U2V0dGluZ3rZmkd0+x17AgACTAAPb3V0cHV0RGlyZWN0b3J5dAASTGphdmEvbGFuZy9TdHJpbmc7TAAPc291cmNlRGlyZWN0b3J5cQB+AAZ4cHQAYi9ob21lL2hlbnJ5L2NvdXJzZXMvcHBhbWwvY2hvcmRwcmVkaWN0b3IvQ2hvcmRQcmVkaWN0b3IvcHJvamVjdC90YXJnZXQvc2NhbGEtMi4xMC9zYnQtMC4xMy9jbGFzc2VzdAABLw==

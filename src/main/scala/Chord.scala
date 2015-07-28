@@ -10,7 +10,7 @@ class Chord(timeNotes: Array[Int]) {
   val intervals = List( ("major",Array(0,3,7)),("minor",Array(0,4,7)))
  // println(timeNotes.mkString(" "))
  // println(timeNotes.length)
-  assert(timeNotes.length>2,"There was only 1 column of the file.")
+  assert(timeNotes.length>1,"There was only 1 column of the file.")
   val duration = timeNotes(0)
   val notes = timeNotes.tail
   val modNotes = timeNotes.map(_ % 12)

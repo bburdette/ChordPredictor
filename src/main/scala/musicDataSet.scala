@@ -1,22 +1,33 @@
+package musicProcessing
+
+//import musicProcessing.Chord
 import scala.collection.immutable.List
 import scala.collection.mutable.Map
 import scala.collection.mutable.ArrayBuffer
 import java.io.File
- 
+
 /**
  * @author cLennon
  */
 
 class Song(name: String, csv: ArrayBuffer[Array[Int]], private val rows: Int, private val cols: Int) {
     
+  
+     val chordList =getChordList(csv)
+    
+    def getChordList(csv: ArrayBuffer[Array[Int]]){
+      val chordArray = for(s<-csv) yield new Chord(s)
+      chordArray.toList
+      }
+    
+   
+  
   def getCSV()={
     this.csv
   }
-  
     def getName()={
        this.name
-    } 
-    
+    }  
     def toArray()={
       val temp=Array.ofDim[Int](rows,cols)
       for(j <- 0 until csv.length) {
@@ -25,8 +36,8 @@ class Song(name: String, csv: ArrayBuffer[Array[Int]], private val rows: Int, pr
         } 
       }
       temp
-    } 
-  }
+    }}
+
 
 
 class musicDataSet(directory: String)  {

@@ -68,6 +68,7 @@ class musicDataSet(directory: String)  {
         var rows =0
         var cols =0
         val name =f.getName.toString
+        println(name)
     val bufferedSource = io.Source.fromFile(f)         
     for (line <- bufferedSource.getLines) {
       rows +=1

@@ -23,6 +23,7 @@ executable midi2csv
                        midi,
                        event-list,
                        non-negative,
-                       containers
+                       containers,
+                       array
   -- hs-source-dirs:      
   default-language:    Haskell2010

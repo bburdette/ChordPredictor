@@ -11,8 +11,68 @@ import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
 import Data.Maybe
 import Data.List
+import qualified Data.Array as A
 import qualified Data.Set as S
 import qualified Numeric.NonNegative.Class as NN
+
+{-
+makeChords :: Int -> Int -> [A.Array Int Bool]
+makeChords notecount divisions = 
+  
+makeChord :: [Int] -> A.Array Int Bool 
+makeChord = 
+  A.listArray (0,1) [False, True]
+-}
+
+-- makeChords :: Int -> Int -> [[Bool]]
+makeChords nc divs = 
+  if (nc > divs || divs == 0) 
+    then []
+    else if (nc == divs)
+      then [(take divs (repeat True))]
+      else if (nc == 0)
+        then [(take divs (repeat False))]
+        else
+          (map (\x -> True : x) (makeChords (nc-1) (divs-1))) ++
+          (map (\x -> False : x) (makeChords nc (divs-1)))
+
+toIntervals :: [Bool] -> [Int]
+toIntervals bools = 
+  map (\(i,_) -> i) 
+    (filter (\(i,b) -> b)
+      (zip [1..] bools))
+
+makeInversion :: [Int] -> [Int]
+makeInversion (a:b:rest) = 
+  map (\x -> rem x 12) 
+    -- (map (b +) (b:a:rest))
+    (map (\x -> x - b) ((b:rest) ++ [(a + 12)]))
+
+makeInversions :: [Int] -> [[Int]]
+makeInversions ch =
+  mi (length ch - 1) ch
+  where  
+    mi :: Int -> [Int] -> [[Int]]
+    mi l ch = 
+      if (l < 1) 
+        then [ch]
+        else ch : map makeInversion (mi (l - 1) ch)
+  
+makeCanonicalSet :: [[Int]] -> S.Set [Int] -> S.Set [Int]
+makeCanonicalSet (ch:chs) chset =
+  let invs = makeInversions ch 
+      founds = map (\i -> S.member i chset) invs
+      found = foldl (||) False founds in
+  if found 
+    then makeCanonicalSet chs chset
+    else makeCanonicalSet chs $ S.insert ch chset
+makeCanonicalSet [] chset = chset  
+
+mCs :: Int -> S.Set [Int]
+mCs size = 
+  let chs = map (0:) $ map toIntervals $ makeChords (size-1) 11 in
+  makeCanonicalSet chs S.empty
+      
 
 main = do
   args <- getArgs
@@ -64,7 +124,6 @@ backOne :: [(time, [Int])] -> [(time, [Int])]
 backOne ((a,b):(c,d):moar) = (c,b) : backOne ((c,d):moar)
 backOne [(a,b)] = []
 backOne [] = []
- 
 
 toNote :: Event.T -> Maybe Int
 toNote evt = 

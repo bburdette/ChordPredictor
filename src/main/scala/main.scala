@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 import musicDataSet._
+=======
+package musicProcessing
+
+>>>>>>> 4fd32a8b7b8c896f9841702c78d44d7ad8ff2934
 /**
  * @author cLennon
  */

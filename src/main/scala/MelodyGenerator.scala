@@ -42,7 +42,7 @@ class MelodyGenerator (filepath: String){
 
   learnSongs(songs)
 
-  val normalizedtransitions = transitions.map(_.map((x: Int) => x.toFloat/totaltransistions))
+  val normalizedtransitions = transitions.map(_.map((x: Int) => x.toDouble/totaltransistions))
   for(row <- normalizedtransitions) {
     for(col <- row)
       print(col + ",")

@@ -4,6 +4,7 @@ import scala.util._
 import com.cra.figaro.language._
 import com.cra.figaro.algorithm._
 import com.cra.figaro.library.atomic.discrete.Uniform  
+import MelodyGenerator._
 /**
  * @author cLennon
  */
@@ -14,7 +15,7 @@ object figModel {
   val intervalHistory: Array[String]=Array.fill(numIterations)("")
   val initialNote = Uniform(probFile.noteStates)
   val initialInterval="none"
-  
+  val MelodyGenerator_ = new MelodyGenerator("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/")
   
   noteHistory(0)=initialNote.toString
   
@@ -59,7 +60,7 @@ object figModel {
     
   
   
-  val noteTransProb=loadProbArray()
+  val noteTransProb: Array[Array[Double]]=MelodyGenerator_.getTransitionMatrix
    
   
   def transitionNotesIntervals(note: String, interval:String): (String, String )={

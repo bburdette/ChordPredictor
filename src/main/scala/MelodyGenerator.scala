@@ -9,25 +9,43 @@ package MelodyGenerator
 
 import com.cra.figaro.language._
 import musicProcessing._
+import musicProcessing.Chord
+import java.io._
 
-object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/"){
-    def main(args: Array[String]) {
-      println("Hello World!")
-      println("Loaded " + dataSet.songList.length + " songs.")
-      printTransitionMatrix
-      println()
-      println()
-      val matrix = getTransitionMatrix
-
-      for(row <- matrix){
-        for(col <- row)
-          print(col)
-        println()
-      }
-    }
-}
+//object MelodyGenerator_Test extends MelodyGenerator ("C:/Users/cLennon/Documents/BenMusicProject/ClassicalMidiCSV"){
+//    def main(args: Array[String]) {
+//      
+//      println("Hello World!")
+//      println("Loaded " + dataSet.songList.length + " songs.")
+//      printTransitionMatrix
+//      println()
+//      println()
+//      
+////      for(row <- matrix){
+////        for(col <- row)
+////          print(col)
+////        println()
+////      }
+//      
+//  
+// 
+//    }
+    
+//}
 
 class MelodyGenerator (filepath: String){
+  
+  
+    def saveTransitionMatrix(fileName: String){
+    val file = new File(fileName)
+    val bw = new BufferedWriter(new FileWriter(file))
+    for(n<-normalizedtransitions){
+       bw.write(n.mkString(",")+"\n")
+    }
+    bw.close()  
+  }
+ 
+  
 
   // Melody generator class.
   // Loads a csv file, then 'learns' melody patterns.

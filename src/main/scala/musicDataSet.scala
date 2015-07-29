@@ -1,10 +1,11 @@
 package musicProcessing
 
-//import musicProcessing.Chord
+ 
 import scala.collection.immutable.List
 import scala.collection.mutable.Map
 import scala.collection.mutable.ArrayBuffer
 import java.io.File
+ 
 
 /**
  * @author cLennon
@@ -68,7 +69,7 @@ class musicDataSet(directory: String)  {
         var rows =0
         var cols =0
         val name =f.getName.toString
-        println(name)
+
     val bufferedSource = io.Source.fromFile(f)         
     for (line <- bufferedSource.getLines) {
       rows +=1

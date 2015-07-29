@@ -178,7 +178,7 @@ putChords h chords = do
   -- print the file to stdout.
   mapM (\(t,cl) -> do 
     let (d, cd) = fromMaybe (0,[]) (M.lookup (0:(tail cl)) canon) 
-        nwc = ((head cl) + d) : unCluster (te cd)
+        nwc = ((head cl) + d) : tail (unCluster (0:(te cd)))
         te [] = []
         te (a:b) = b
     hPutStr h (show t)

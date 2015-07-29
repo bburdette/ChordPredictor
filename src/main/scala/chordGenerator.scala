@@ -46,7 +46,7 @@ class ChordGenerator (filepath: String) extends MelodyGenerator(filepath) {
   val chordLength = 2 // Chords will be capped at this length
 
   for (song <- songs) {
-    println("Getting unique chords: " + song.getName)
+    //println("Getting unique chords: " + song.getName)
     getUniqueChords(song.getChordList)
   }
   val chordTransitionMatrix = Array.fill(numberUniqueChords, numberUniqueChords)(0)

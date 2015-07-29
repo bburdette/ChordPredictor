@@ -7,10 +7,9 @@
 // generates new melodies. Chords may be overlayed onto this.
 package MelodyGenerator
 
-import com.cra.figaro.language._
 import musicProcessing._
 
-object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/"){
+object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/ClassicalMidiCSV/"){
     def main(args: Array[String]) {
       println("Hello World!")
       println("Loaded " + dataSet.songList.length + " songs.")
@@ -27,18 +26,18 @@ object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/
     }
 }
 
-class MelodyGenerator (filepath: String){
+class MelodyGenerator (filepath: String) {
 
   // Melody generator class.
   // Loads a csv file, then 'learns' melody patterns.
   // Outputs a new csv file containing a generated melody.
 
   val dataSet = new musicDataSet(filepath)
-  //val dataSet = new musicDataSet("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/")
-  //val dataSet = new musicDataSet("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/ClassicalMidiCSV/")
   val songs = dataSet.songList
   val transitions = Array.fill(12, 12)(0)
   var totaltransistions = 0
+
+
 
   learnSongs(songs)
 

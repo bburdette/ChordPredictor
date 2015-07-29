@@ -11,10 +11,12 @@ import qualified Sound.MIDI.Message.Channel       as ChannelMsg
 import qualified Sound.MIDI.Message.Channel.Voice as Voice
 import Data.Maybe
 import Data.List
+import Data.Ratio
 import qualified Data.Array as A
 import qualified Data.Set as S
 import qualified Data.Map.Strict as M
 import qualified Numeric.NonNegative.Class as NN
+import qualified Numeric.NonNegative.Wrapper as NW
 import GHC.IO.Handle
 import System.IO
 
@@ -161,13 +163,18 @@ loadIt fp = do
   -- showFile fp
   (MFile.Cons tp div tracks) <- fromFile fp
   -- print event count.
-  let events = MFile.mergeTracks tp tracks
+  let mrged = MFile.mergeTracks tp tracks
+      ratevents = MFile.secondsFromTicks div mrged
+      -- events = EventList.toPairList (MFile.secondsFromTicks div mrged)
+      events = map (\(t,e) -> (to_ms (NW.toNumber t), e)) (EventList.toPairList ratevents)
+      to_ms :: Ratio Integer -> Int
+      to_ms r = floor ((1000 * (fromIntegral (numerator r))) / (fromIntegral (denominator r))) 
   -- print $ (length tracks)
   -- print (EventList.duration events)
   -- EventList.mapBodyM print events
   -- mapM print (EventList.toPairList events)
   -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
-  let ncs = map (\(d,c) -> (d, toRootAndIntervals c)) $ toNoteClusters (EventList.toPairList events)
+  let ncs = map (\(d,c) -> (d, toRootAndIntervals c)) $ toNoteClusters events 
       -- chords = filter (\(t,cl) -> length cl > 2) ncs
       chords = backOne $ addLiminate 3 0 ncs
       -- chords = addLiminate 3 0 ncs
@@ -194,12 +201,21 @@ putChords h chords = do
   return ()
 
 -- add up the note start offsets for eliminated notes and store the accumulated time in the next chord.
+addLiminate :: Int -> Int -> [(Int, [Int])] -> [(Int, [Int])]
+addLiminate lowerbound accum ((curtime,curnotes):rest) = 
+  if length curnotes < lowerbound 
+    then addLiminate lowerbound (accum + curtime) rest
+    else (curtime + accum, curnotes) : addLiminate lowerbound 0 rest
+addLiminate _ accum [] = [(accum,[])]
+
+{-
 addLiminate :: (NN.C time, Num time, Eq time) => Int -> time -> [(time, [Int])] -> [(time, [Int])]
 addLiminate lowerbound accum ((curtime,curnotes):rest) = 
   if length curnotes < lowerbound 
     then addLiminate lowerbound (accum + curtime) rest
     else (curtime + accum, curnotes) : addLiminate lowerbound 0 rest
 addLiminate _ accum [] = [(accum,[])]
+-}
 
 backOne :: [(time, [Int])] -> [(time, [Int])]
 backOne ((a,b):(c,d):moar) = (c,b) : backOne ((c,d):moar)

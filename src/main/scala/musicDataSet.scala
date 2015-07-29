@@ -13,9 +13,13 @@ import java.io.File
 class Song(name: String, csv: ArrayBuffer[Array[Int]], private val rows: Int, private val cols: Int) {
     
   
-     val chordList =getChordList(csv)
-    
-    def getChordList(csv: ArrayBuffer[Array[Int]]){
+  
+  
+     val chordList =makeChordList(csv)
+     
+     def getChordList()= {  this.chordList}
+     
+    def makeChordList(csv: ArrayBuffer[Array[Int]]): List[Chord]={
       val chordArray = for(s<-csv) yield new Chord(s)
       chordArray.toList
       }

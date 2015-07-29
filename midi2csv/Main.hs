@@ -72,7 +72,42 @@ mCs :: Int -> S.Set [Int]
 mCs size = 
   let chs = map (0:) $ map toIntervals $ makeChords (size-1) 11 in
   makeCanonicalSet chs S.empty
-      
+
+-- intervals:
+-- 0  1  2  3  4  5  6  7  8  9  10 11 12
+-- un min
+-- 0  unison
+-- 1  minor 2nd     +12 = minor 9th
+-- 2  major 2nd     +12 = major 9th
+-- 3  minor 3rd
+-- 4  major 3rd
+-- 5  4th           +12 = 11th
+-- 6  tritone / augmented 4th / diminished 5th
+-- 7  5th           +12 = augmented 11th, diminished 12th
+-- 8  minor 6th     +12 = minor 13th
+-- 9  major 6th     +12 = major 13th
+-- 10 minor 7th
+-- 11 major 7th
+-- 12 octave
+
+-- rule:  if interval is a 2nd, 4th, tritone, or 6th
+--        AND there is an adjacent tone, bump it up +
+-- rule:  if previous note is 1 or 2 less, bump up current note. 
+
+unCluster :: [Int] -> [Int]
+unCluster notes = 
+  (sort . uC) notes
+
+uC :: [Int] -> [Int]
+uC (a:b:rest) = 
+  let nb = mabeadd a b in
+  a:(uC (nb:rest))
+uC [a] = [a]
+uC [] = []
+
+mabeadd p c = 
+  if abs(c - p) < 3 then c + 12 else c
+  
 
 main = do
   args <- getArgs

@@ -1,5 +1,7 @@
 package musicProcessing
 
+import scala.util.Sorting.quickSort
+
 /**
  * @author cLennon
  */

@@ -15,7 +15,7 @@ class Chord(timeNotes: Array[Int]) {
   val notes = timeNotes.tail
   val modNotes = timeNotes.map(_ % 12)
   val ordModNotes=modNotes
-  val defaultRoot=ordModNotes(0)
+  val defaultRoot=modNotes(0)
   quickSort(ordModNotes)
   
   val intervalsPresent =checkIntervals().filter(_._2==true)

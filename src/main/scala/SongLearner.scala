@@ -24,7 +24,9 @@ object SongLearner_Test extends SongLearner ("/home/henry/courses/ppaml/chordpre
           print(x+ ",")
         println()
       }
+      saveChordTransitionMatrix("/home/henry/courses/ppaml/chordpredictor/test.csv")
     }
+
 }
 
 
@@ -35,7 +37,7 @@ class SongLearner(filepath: String) extends ChordGenerator(filepath: String) {
 
   def getChordFromIndex(i: Int): Array[Int] = { chordLookup(i) }
  
-  def saveTransitionMatrix(fileName: String){
+  def saveMelodyTransitionMatrix(fileName: String){
     val file = new File(fileName)
     val bw = new BufferedWriter(new FileWriter(file))
     for(n<-normalizedtransitions){
@@ -43,6 +45,16 @@ class SongLearner(filepath: String) extends ChordGenerator(filepath: String) {
     }
     bw.close()  
   }
+
+  def saveChordTransitionMatrix(fileName: String){
+    val file = new File(fileName)
+    val bw = new BufferedWriter(new FileWriter(file))
+    for(n<-normalizedChordTransitionMatrix){
+       bw.write(n.mkString(",")+"\n")
+    }
+    bw.close()  
+  }
+
 
   def printTransitionMatrix {
 

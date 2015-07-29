@@ -13,7 +13,10 @@ import Data.Maybe
 import Data.List
 import qualified Data.Array as A
 import qualified Data.Set as S
+import qualified Data.Map.Strict as M
 import qualified Numeric.NonNegative.Class as NN
+import GHC.IO.Handle
+import System.IO
 
 {-
 makeChords :: Int -> Int -> [A.Array Int Bool]
@@ -24,7 +27,7 @@ makeChord =
   A.listArray (0,1) [False, True]
 -}
 
--- makeChords :: Int -> Int -> [[Bool]]
+makeChords :: Int -> Int -> [[Bool]]
 makeChords nc divs = 
   if (nc > divs || divs == 0) 
     then []
@@ -35,6 +38,9 @@ makeChords nc divs =
         else
           (map (\x -> True : x) (makeChords (nc-1) (divs-1))) ++
           (map (\x -> False : x) (makeChords nc (divs-1)))
+
+makeAllChords divs = 
+  concat $ map (\n -> makeChords n divs) [1..11]
 
 toIntervals :: [Bool] -> [Int]
 toIntervals bools = 
@@ -72,6 +78,33 @@ mCs :: Int -> S.Set [Int]
 mCs size = 
   let chs = map (0:) $ map toIntervals $ makeChords (size-1) 11 in
   makeCanonicalSet chs S.empty
+
+makeCanon :: [[Int]] -> M.Map [Int] (Int, [Int])
+makeCanon chs = 
+  foldl (\mp ch -> 
+    case M.member ch mp of 
+      True -> mp
+      False -> 
+        let invs = makeCanonInversions ch in
+        foldl (\mp (d,chinv) -> 
+          M.insert chinv (d,ch) mp) mp invs
+        )
+    M.empty chs
+      
+makeAllCanon :: M.Map [Int] (Int, [Int])
+makeAllCanon =  
+ makeCanon $ map ((0:) . toIntervals) (makeAllChords 11) 
+ 
+makeCanonInversions :: [Int] -> [(Int, [Int])]
+makeCanonInversions ch =
+  let inversions = makeInversions ch in
+  zip ch inversions
+ 
+makeCanonInversion :: [Int] -> (Int,[Int])
+makeCanonInversion (a:b:rest) = 
+  (12 -b, 
+    (map (\x -> rem x 12) 
+      (map (\x -> x - b) ((b:rest) ++ [(a + 12)]))))
 
 -- intervals:
 -- 0  1  2  3  4  5  6  7  8  9  10 11 12
@@ -112,16 +145,17 @@ mabeadd p c =
 main = do
   args <- getArgs
   let largs = length args
-  if (largs == 1)
-    then 
-      loadIt (args !! 0)
-    else if (largs == 2)
-      then 
-        showFile (args !! 1)
+  if (largs == 2)
+    then if (args !! 0) == "-raw" 
+      then showFile (args !! 1)
       else do
-        putStrLn "syntax:"
-        putStrLn "midi2csv <filename>"
-        putStrLn "midi2csv -raw <filename>"
+        chords <- loadIt (args !! 0)
+        h <- openFile (args !! 1) WriteMode
+        putChords h chords
+    else do
+      putStrLn "syntax:"
+      putStrLn "midi2csv <infilename> <outfilename>"
+      putStrLn "midi2csv -raw <filename>"
 
 loadIt fp = do 
   -- showFile fp
@@ -133,16 +167,28 @@ loadIt fp = do
   -- EventList.mapBodyM print events
   -- mapM print (EventList.toPairList events)
   -- mapM (\(a,b) -> print $ show a ++ " " ++ show (toNote b)) (EventList.toPairList events)
-  let ncs = toNoteClusters (EventList.toPairList events)
+  let ncs = map (\(d,c) -> (d, toRootAndIntervals c)) $ toNoteClusters (EventList.toPairList events)
       -- chords = filter (\(t,cl) -> length cl > 2) ncs
       chords = backOne $ addLiminate 3 0 ncs
       -- chords = addLiminate 3 0 ncs
+  return chords
+
+putChords h chords = do
+  let canon = makeAllCanon
+  -- print the file to stdout.
   mapM (\(t,cl) -> do 
-    putStr (show t)
+    let (d, cd) = fromMaybe (0,[]) (M.lookup (0:(tail cl)) canon) 
+        nwc = ((head cl) + d) : tail (unCluster (0:(te cd)))
+        te [] = []
+        te (a:b) = b
+    hPutStr h (show t)
     mapM (\c -> do
-      putStr ","
-      putStr (show c)) (toRootAndIntervals cl)
-    putStrLn "") chords
+      hPutStr h ","
+      -- hPutStr h (show c)) cl 
+      -- hPutStr h (show c)) (toRootAndIntervals cl)
+      hPutStr h (show c)) nwc
+    hPutStr h "\n") chords
+  hClose h
   -- mapM print $ filter (\(t,cl) -> length cl > 2) ncs
   -- mapM print $ filter (\(_,lst) -> length lst > 2) (toNoteClusters (EventList.toPairList events))
   return ()

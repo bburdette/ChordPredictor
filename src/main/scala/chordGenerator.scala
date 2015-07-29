@@ -60,7 +60,7 @@ class ChordGenerator (filepath: String) extends MelodyGenerator(filepath) {
   val normalizedChordTransitionMatrix = chordTransitionMatrix.map(_.map((x: Int) => x.toDouble/totalChordTransitions))
 
 
-  override def learnChords(s: List[Chord]) {
+  def learnChords(s: List[Chord]) {
     // Populate the melody transition matrix with each chord transition found.
     if(s.length > 1) {
       val first = s.head

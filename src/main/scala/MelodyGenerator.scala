@@ -10,7 +10,6 @@ package MelodyGenerator
 //import com.cra.figaro.language._
 import musicProcessing._
 import musicProcessing.Chord
-import java.io._
 
 object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/") {
    def main(args: Array[String]) {
@@ -36,29 +35,10 @@ class MelodyGenerator (filepath: String){
   val transitions = Array.fill(12, 12)(0)
   var totaltransistions = 0
 
-  //learnSongs(songs)
-  
-  def learnSongs(songlist: List[Song]) {
-    for (song <- songlist) {
-      learnChords(song.getChordList)
-    }
-  }
-
   def learnMelodyTransistion(first: Chord, second: Chord) {
     transitions(first.getRootFreq) (second.getRootFreq) += 1
     totaltransistions += 1
   }
 
-  def learnChords(s: List[Chord]) {
-    // Populate the melody transition matrix with each chord transition found.
-    if(s.length > 1) {
-      val first = s.head
-      val second = s.tail.head
-      transitions(first.getRootFreq) (second.getRootFreq) += 1
-      //println("First: " + first.getRootFreq)
-      //println("Second: " + second.getRootFreq)
-      totaltransistions += 1
-      learnChords(s.tail)
-    }
-  }
+  
 }

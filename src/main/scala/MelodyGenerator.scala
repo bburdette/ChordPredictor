@@ -12,26 +12,18 @@ import musicProcessing._
 import musicProcessing.Chord
 import java.io._
 
-//object MelodyGenerator_Test extends MelodyGenerator ("C:/Users/cLennon/Documents/BenMusicProject/ClassicalMidiCSV"){
-//    def main(args: Array[String]) {
-//      
-//      println("Hello World!")
-//      println("Loaded " + dataSet.songList.length + " songs.")
-//      printTransitionMatrix
-//      println()
-//      println()
-//      
-////      for(row <- matrix){
-////        for(col <- row)
-////          print(col)
-////        println()
-////      }
-//      
-//  
-// 
-//    }
+object MelodyGenerator_Test extends MelodyGenerator ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/"){
+   def main(args: Array[String]) {
+     
+     println("Hello World!")
+     println("Loaded " + dataSet.songList.length + " songs.")
+     printTransitionMatrix
+     println()
+     println()
+   
+   }
     
-//}
+}
 
 class MelodyGenerator (filepath: String){
   

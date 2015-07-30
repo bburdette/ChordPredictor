@@ -10,8 +10,8 @@ import com.cra.figaro.library.collection._
 import MelodyGenerator._
 import java.io._
 import MelodyGenerator.MelodyGenerator
-import com.cra.figaro.library.compound.CPD
-
+import com.cra.figaro.library.compound.{CPD}
+//import scala.collection.immutable.Seq
 /**
  * @author cLennon
  */
@@ -31,12 +31,19 @@ object modelFunction {
         return probArray
       }
   
-     def saveNewSong(songName:String,text: List[(Int,String)]){
-    val ntext=text.map { case (int, str) => s"$int,$str\n"}
-    val file = new File(songName)
-    val bw = new BufferedWriter(new FileWriter(file))
-    bw.write(ntext.mkString(""))
-    bw.close()
+     
+     
+
+
+ 
+    def saveNewSong(songName:String,noteList: ListBuffer[String],chordList:ListBuffer[Array[String]],
+        timeList: ListBuffer[String] ){
+        val tupList=(noteList,chordList,timeList).zipped.toList
+        val ntext=tupList.map{case (x:String,y:Array[String],z:String) => z+","+x+","+y.mkString(",")+"\n"}
+        val file = new File(songName)
+        val bw = new BufferedWriter(new FileWriter(file))
+        bw.write(ntext.mkString(""))
+        bw.close()
   }
   
     def writeSong(song2Be: Any,newList:ListBuffer[String]){
@@ -45,9 +52,10 @@ object modelFunction {
   }
     
   def transitionNotesIntervals(note: Element[String], interval:Element[String],
-      noteStates:List[String],noteTransProb: Array[Array[Double]]): (Element[String], Element[String] )={
+      noteStates:List[String],noteTransProb: Array[Array[Double]],intStates:List[String],chordTransMtx: Array[Array[Double]]):
+      (Element[String], Element[String] )={
     val newNoteState = noteTrans(note, noteStates,noteTransProb)
-    val newIntervalState=interval
+    val  newIntervalState=chordTrans(interval,chordTransMtx,intStates)
     (newNoteState, newIntervalState)  
   } 
   
@@ -67,6 +75,20 @@ object modelFunction {
     ("10")->Select(noteTransProb(10).toList,noteStates), 
     ("11")->Select(noteTransProb(11).toList,noteStates))
     return newNote
+  }
+  
+  
+//  def genChordTransSeq(chordTransMtx: Array[Array[Double]],States:List[String]):
+//  Seq[(String,Element[String])]={
+//   val cat=chordTransMtx.map(rw=>Select(rw.toList,States)).toSeq
+//   val thing1=cat.zipWithIndex
+//   val thing2=thing1.map(pair=>(pair._2.toString(),pair._1) )
+//    thing2
+//  }
+  
+  
+  def chordTrans(oldChord: Element[String],chordTransMtx: Array[Array[Double]],States:List[String]): Element[String]={
+    Chain(oldChord,(rw:String)=>Select(chordTransMtx(rw.toInt).toList,States))
   }
   
 //  def rhythmTrans(last0: Int,last1:Int){

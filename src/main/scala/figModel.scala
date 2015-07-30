@@ -35,57 +35,59 @@ object figModel {
     songLearner.saveMelodyTransitionMatrix(fileNames.melodyMatrixFileName)
     val noteTransProb=songLearner.getMelodyTransistionMatrix
     val chordTransProb=songLearner.getChordTransistionMatrix
-   
+    val noteStates=List("0","1","2","3","4","5","6","7","8","9","10","11")
+    val prechordStates=(0 until chordTransProb.length)
+    val chordStates=prechordStates.toList.map(_.toString)
     
 
    object probFile {
    val Name: String = melodyMatrixFileName
    val rows: Int =12
    val cols: Int =12
-   val noteStates=List("0","1","2","3","4","5","6","7","8","9","10","11")
   }
   
   
   val noteHistory: Array[Element[String]]=Array.fill(numIterations)(Constant("0"))
-  val intervalHistory: Array[Element[String]]=Array.fill(numIterations)(Constant(""))
+  val intervalHistory: Array[Element[String]]=Array.fill(numIterations)(Constant("0"))
   val initialNote = Uniform("0","1","2","3","4","5","6","7","8","9","10","11")
-  val initialInterval=Constant("none")
+  val initialInterval=Constant("0")
   val initString =initialNote 
   noteHistory(0)=initString
   val newSongFileName=fileNames.newSongFileName
   //val MelodyGenerator_ = new MelodyGenerator("C:/Users/cLennon/Documents/BenMusicProject/ClassicalMidiCSV")
   
   
-   //
- 
 
       
   for(songTime<- 1 until numIterations){
     val noteIntPair=modelFunction.transitionNotesIntervals(noteHistory(songTime-1), intervalHistory(songTime-1),
-         probFile.noteStates,noteTransProb)
+         noteStates,noteTransProb,chordStates,chordTransProb)
     noteHistory(songTime)=noteIntPair._1
     intervalHistory(songTime)=noteIntPair._2
   }
  
   val noteHistoryInject=Inject(noteHistory:_*)
-  val alg =Importance(noteHistoryInject)
+  val intervalHistoryInject=Inject(intervalHistory:_*)
+  val alg =Importance(noteHistoryInject,intervalHistoryInject  )
 
   println("alg start")
   val songSample=alg.sample()._2
-  val wantString=songSample(noteHistoryInject)
-   val newList:  ListBuffer[String]=ListBuffer()
- 
- 
-  
-  modelFunction.writeSong(wantString,newList)
-  
-  
- 
-  val preOutputArray =newList.zipWithIndex
-  val outputList = preOutputArray.map(a=>(a._2,a._1)).toList
-  println("Here is the song")
- println( outputList)
-   modelFunction.saveNewSong(newSongFileName,outputList)
+  val noteString=songSample(noteHistoryInject)
+  val intervalString=songSample(intervalHistoryInject)
+  val noteList:  ListBuffer[String]=ListBuffer()
+  val intervalList:  ListBuffer[String]=ListBuffer()
+
+   
+  modelFunction.writeSong(noteString,noteList)
+  modelFunction.writeSong(intervalString,intervalList)
+
+  val chordList = intervalList.map( s=> songLearner.getChordFromIndex(s.toInt).map(_.toString ))
+  val timeList =ListBuffer.fill(noteList.length)("0")
+  println("Here is the melody")
+  println(noteList)
+  //println("here are the intervals")
+
+  modelFunction.saveNewSong(newSongFileName,noteList,chordList,timeList)
    println("song saved to "+newSongFileName)
 
  

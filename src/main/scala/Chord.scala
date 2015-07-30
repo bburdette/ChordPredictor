@@ -22,6 +22,10 @@ class Chord(timeNotes: Array[Int]) {
   quickSort(ordModNotes)
   
   val intervalsPresent =checkIntervals().filter(_._2==true)
+
+  def getRoot(): Int = {
+    notes(0)
+  }
   
   def getRootFreq(): Int={
     if(intervalsPresent.isEmpty){return defaultRoot}
@@ -30,7 +34,7 @@ class Chord(timeNotes: Array[Int]) {
       quickSort(bases)
       bases(0)
     }
-   }
+  }
   
   def getInterval(): String={
     if(intervalsPresent.isEmpty){return "Other"}
@@ -38,7 +42,6 @@ class Chord(timeNotes: Array[Int]) {
       return intervalsPresent(0)._1
     }
   }
-  
   
   def checkIntervals() = {testAllChords(ordModNotes,intervals)} //.filter(_._2==true) }
   
@@ -49,11 +52,11 @@ class Chord(timeNotes: Array[Int]) {
   }
   
   def testBase(base: Int,ordModNotes: Array[Int],intervals: List[(String,Array[Int])]):List[(String,Boolean,Int)]={
-   // println("in testBase")
+    // println("in testBase")
     val shiftModNotes = ordModNotes.map(_-base)
     val ordShift = shiftModNotes
-      quickSort(ordShift)
-     // println(ordShift)
+    quickSort(ordShift)
+    // println(ordShift)
     val tests= testAllIntervals(ordShift,intervals)
     for(t<-tests) yield (t._1,t._2,base)
     

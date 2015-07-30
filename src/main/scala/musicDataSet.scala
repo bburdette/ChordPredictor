@@ -5,6 +5,7 @@ import scala.collection.immutable.List
 import scala.collection.mutable.Map
 import scala.collection.mutable.ArrayBuffer
 import java.io.File
+//import musicProcessing.Chord
  
 
 /**
@@ -12,9 +13,6 @@ import java.io.File
  */
 
 class Song(name: String, csv: ArrayBuffer[Array[Int]], private val rows: Int, private val cols: Int) {
-    
-  
-  
   
      val chordList =makeChordList(csv)
      
@@ -25,6 +23,7 @@ class Song(name: String, csv: ArrayBuffer[Array[Int]], private val rows: Int, pr
       chordArray.toList
       }
     
+   // def getDurations():List
    
   
   def getCSV()={

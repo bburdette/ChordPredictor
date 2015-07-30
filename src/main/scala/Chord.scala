@@ -1,14 +1,15 @@
 package musicProcessing
 
-import scala.util.Sorting.quickSort
-
+  import util.Sorting.quickSort
+  import scala.collection.mutable.ListBuffer
+   import scala.collection.immutable.Map
 /**
  * @author cLennon
  */
 class Chord(timeNotes: Array[Int]) {
-  import util.Sorting.quickSort
-  import scala.collection.mutable.ListBuffer
-   import scala.collection.immutable.Map
+
+   
+   
   val intervals = List( ("major",Array(0,3,7)),("minor",Array(0,4,7)))
  // println(timeNotes.mkString(" "))
  // println(timeNotes.length)

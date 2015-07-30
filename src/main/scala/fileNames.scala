@@ -8,4 +8,5 @@ object fileNames {
   val testFileDirectory  =  "C:/Users/cLennon/Documents/BenMusicProject/ClassicalMidiCSV"
   val newSongFileName="C:/Users/cLennon/Documents/BenMusicProject/newSong.csv"
   val chordMatrixFileName="C:/Users/cLennon/Documents/BenMusicProject/chordtranition.csv"
+   val timeMatrixFileName="C:/Users/cLennon/Documents/BenMusicProject/timetranition.csv"
 }

@@ -13,6 +13,7 @@ package SongLearner
 
 import java.io._
 import ChordGenerator._
+import TimingGenerator._
 
 object SongLearner_Test extends SongLearner ("/home/henry/courses/ppaml/chordpredictor/ChordPredictor/TempSongs/"){
     def main(args: Array[String]) {
@@ -24,7 +25,8 @@ object SongLearner_Test extends SongLearner ("/home/henry/courses/ppaml/chordpre
           print(x+ ",")
         println()
       }
-      saveChordTransitionMatrix("/home/henry/courses/ppaml/chordpredictor/test.csv")
+      saveChordTransitionMatrix("/home/henry/courses/ppaml/chordpredictor/testTransitionMatrixSave.csv")
+      saveChordLookupTable("/home/henry/courses/ppaml/chordpredictor/testChordLookupSave.csv")
     }
 
 }
@@ -32,12 +34,16 @@ object SongLearner_Test extends SongLearner ("/home/henry/courses/ppaml/chordpre
 
 class SongLearner(filepath: String) extends ChordGenerator(filepath: String) {
 
+  val timinggenerator = new TimingGenerator
+  timinggenerator.loadSongs(filepath)
+
   def getMelodyTransistionMatrix: Array[Array[Double]] = { normalizedtransitions }
   def getChordTransistionMatrix: Array[Array[Double]] = { normalizedChordTransitionMatrix }
+  def getTimingTransitionMatrix: Array[Array[Double]] = { timinggenerator.getTransitionMatrix }
 
   def getChordFromIndex(i: Int): Array[Int] = { chordLookup(i) }
  
-  def saveMelodyTransitionMatrix(fileName: String){
+  def saveMelodyTransitionMatrix(fileName: String) {
     val file = new File(fileName)
     val bw = new BufferedWriter(new FileWriter(file))
     for(n<-normalizedtransitions){
@@ -55,6 +61,14 @@ class SongLearner(filepath: String) extends ChordGenerator(filepath: String) {
     bw.close()  
   }
 
+  def saveChordLookupTable(fileName: String){
+    val file = new File(fileName)
+    val bw = new BufferedWriter(new FileWriter(file))
+    for (key <- chordLookup.keys) {
+      bw.write(chordLookup(key).mkString(",") + "\n")
+    }
+    bw.close()
+  }
 
   def printTransitionMatrix {
 

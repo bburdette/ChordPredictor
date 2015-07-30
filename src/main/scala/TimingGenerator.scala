@@ -122,6 +122,7 @@ class TimingGenerator {
   def saveTransitionMatrix(fileName: String) {
     val file = new File(fileName)
     val bw = new BufferedWriter(new FileWriter(file))
+    bw.write(totalTimingTransitions.toString + "\n")
     for(n<-timingTransitionMatrix){
        bw.write(n.mkString(",")+"\n")
     }
@@ -136,8 +137,12 @@ class TimingGenerator {
     var cols =0
     val name =f.getName.toString
 
-    val bufferedSource = io.Source.fromFile(f)         
-    for (line <- bufferedSource.getLines) {
+    val bufferedSource = io.Source.fromFile(f)
+    val lines = bufferedSource.getLines
+    totalTimingTransitions = lines.next.toInt
+    println(totalTimingTransitions)
+    for (line <- lines) {
+      println(line)
       rows +=1
       csv += line.split(",").map(_.trim).map(_.toInt)
       if(rows==1){cols=csv(0).length}
@@ -152,7 +157,6 @@ class TimingGenerator {
           csv(i)(j)
     }    
     normalizeTransistionMatrix
-
   } 
 }
 

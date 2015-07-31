@@ -1,0 +1,11 @@
+In order to run the model as is, you only need to change the names in 
+the fileNames.scala file.  direct them as follows:
+ melodyMatrixFileName is the file in which you will store the note transitions
+ testFileDirectory  = is the file in which the trainig scv files are held.
+ newSongFileName= is the name of the file in which you will store the new song
+  chordMatrixFileName= the file in which you store the chord transitions
+   timeMatrixFileName=the name of the file in which you will store the time transitions.
+   
+   change the length of the song in figModel if you want (variable is numIterations) it is currently at 100.
+   
+   Then run musicProsessing.figModel as you main file.  That is it.

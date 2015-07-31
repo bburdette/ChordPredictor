@@ -28,3 +28,18 @@ You can use midi2csv with no parameters to get the syntax.  Essentially you just
 ```
 > midi2csv vexation.mid vexation.csv
 ```
+
+
+### Using csv2midi
+csv2midi is a Python 2 program that converts output CSV file to playable midis.
+It requires the Python package Midi. To install:
+
+pip install midi
+
+To run csv2midi, run csv2midi.py through the Python 2 interpreter:
+
+python csv2midi <input CSV file> <output MIDI file>
+
+Example: python csv2midi free_bird.csv free_bird.mid
+
+Then use the midi player of your choice to listen to free_bird.mid!

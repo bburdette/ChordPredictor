@@ -41,7 +41,7 @@ the src/main/scala/fileNames.scala file.  Direct them as follows:
  
 Change the length of the song in figModel if you want (variable is numIterations) it is currently at 100.
 
-Then run src/main/scala/musicProsessing.figModel as your main file.  That is it.
+Then run musicProcessing.figModel as your main file.  That is it.
 
 ### Using csv2midi
 csv2midi is a Python 2 program that converts output CSV file to playable midis.

@@ -28,7 +28,20 @@ You can use midi2csv with no parameters to get the syntax.  Essentially you just
 ```
 > midi2csv vexation.mid vexation.csv
 ```
+### Using the scala component
 
+In order to run the model as is, you only need to change the names in 
+the src/main/scala/fileNames.scala file.  Direct them as follows:
+
+ - melodyMatrixFileName= the file in which you will store the note transitions
+ - testFileDirectory= the directory in which the training csv files are held.
+ - newSongFileName= the name of the file in which you will store the new song
+ - chordMatrixFileName= the file in which you store the chord transitions
+ - timeMatrixFileName= the name of the file in which you will store the time transitions.
+ 
+Change the length of the song in figModel if you want (variable is numIterations) it is currently at 100.
+
+Then run src/main/scala/musicProsessing.figModel as your main file.  That is it.
 
 ### Using csv2midi
 csv2midi is a Python 2 program that converts output CSV file to playable midis.

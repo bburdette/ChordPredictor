@@ -44,11 +44,29 @@ Change the length of the song in figModel if you want (variable is numIterations
 Then run musicProcessing.figModel as your main file.  That is it.
 
 ### Using csv2midi
+
 csv2midi is a Python 2 program that converts output CSV file to playable midis.
-It requires the Python package Midi. To install:
+It requires the Python package Midi (which requires packages alsalib and 'swig'). To install:
 
 ```
+> sudo apt-get install swig alsalib python-dev          // if I remember correctly...
+> git clone https://github.com/vishnubob/python-midi
+> cd python-midi
+> python setup.py install
 > pip install midi
+```
+
+On nixos:
+
+```
+> git clone https://github.com/vishnubob/python-midi     
+> cd chordpredictor/csv2midi
+> nix-shell                             // make python and other libs available
+> virtualenv .                          // create a virtualenv in csv2midi
+> source bin/activate                   // activate the virtualenv
+> cd ../../python-midi    
+> python setup.py install               // install python-midi into our csv2midi virtualenv
+> cd ../chordpredictor/csv2midi         // cd back, ready to go hopefully
 ```
 
 To run csv2midi, run csv2midi.py through the Python 2 interpreter:

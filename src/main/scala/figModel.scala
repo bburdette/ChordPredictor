@@ -62,7 +62,7 @@ object figModel {
   val initString =initialNote 
   noteHistory(0)=initString
   val newSongFileName=fileNames.newSongFileName
-  //val MelodyGenerator_ = new MelodyGenerator("C:/Users/cLennon/Documents/BenMusicProject/ClassicalMidiCSV")
+  
   
   
 

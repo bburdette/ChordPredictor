@@ -53,7 +53,6 @@ toIntervals bools =
 makeInversion :: [Int] -> [Int]
 makeInversion (a:b:rest) = 
   map (\x -> rem x 12) 
-    -- (map (b +) (b:a:rest))
     (map (\x -> x - b) ((b:rest) ++ [(a + 12)]))
 
 makeInversions :: [Int] -> [[Int]]
@@ -107,6 +106,28 @@ makeCanonInversion (a:b:rest) =
   (12 -b, 
     (map (\x -> rem x 12) 
       (map (\x -> x - b) ((b:rest) ++ [(a + 12)]))))
+
+chordStats = do 
+  let uncan = map (\n -> (length (makeChords n 11))) [1..11]
+  putStrLn "chord types with note counts:"
+  mapM (\(n,c) -> putStrLn $ (show n) ++ " " ++ (show c)) (zip [1..11] uncan)
+  putStrLn $ "sum: " ++ (show (length (makeAllChords 11)))
+  putStrLn "canonical chords, count:"
+  let can = map (\n -> (S.size (mCs n))) [1..11]
+  mapM (\(n,c) -> putStrLn $ (show n) ++ " " ++ (show c)) (zip [1..11] can)
+  putStrLn $ "sum: " ++ (show (sum can))
+
+inversionExample = do 
+  putStrLn "3 note inversions: "
+  print (makeInversions [0,4,7])
+  putStrLn "4 note inversions: "
+  print (makeInversions [0,4,7,9])
+  putStrLn "5 note inversions: "
+  print (makeInversions [0,4,7,9,11])
+  
+unclusterExample = do 
+  putStrLn $ "chord: " ++ (show [0,2,4,7])
+  putStrLn $ "unclustered chord: " ++ (show (unCluster([0,2,4,7])))
 
 -- intervals:
 -- 0  1  2  3  4  5  6  7  8  9  10 11 12

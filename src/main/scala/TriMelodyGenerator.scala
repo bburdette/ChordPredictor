@@ -34,6 +34,7 @@ object TriMelodyGenerator_Test{
     test.saveToFile("test.txt")
 
     var test2 = new TriMelodyCounter
+    // test.txt and test2.txt should end up being the same.
     test2.readFromFile("test.txt")
     test2.saveToFile("test2.txt")
 
@@ -117,18 +118,6 @@ class TriMelodyCounter (){
       }
     bufferedSource.close
   }
- /*
-     def loadProbArray(rws:Int,cols:Int,fName:String): Array[Array[Double]]={
-      val probArray= Array.ofDim[Double](rws,cols)
-      val bufferedSource = io.Source.fromFile(fName)
-      for ((line, count) <- bufferedSource.getLines.zipWithIndex) {
-          probArray(count) = line.split(",").map(_.trim).map(x => Try(x.toDouble).getOrElse(0.0)) //warning.. will convert string to double 
-          //or will replace by 0 (in case on Na or "" or other)
-        }
-        bufferedSource.close
-        return probArray
-      }
-  */  
 }
 
 class TriMelodyGenerator(tmc: TriMelodyCounter) {
